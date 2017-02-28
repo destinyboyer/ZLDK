@@ -1,4 +1,12 @@
+/*-------------------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------------------*/
+
 #pragma once
+#ifndef  store_h
+#define store_h
+
 #include "dvd.h"
 #include "customer.h"
 #include "bstree.h"
@@ -24,3 +32,5 @@ private:
 	HashTable customers;	//Hash table of Customer*
 	BSTree database;		//BTree or something of DVD
 };
+
+#endif
