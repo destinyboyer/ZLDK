@@ -18,10 +18,14 @@
 
 class Return : public Transaction {
 	public:
-	Return(void);
-	virtual ~Return(void);
-
+		Return(void);
+		virtual ~Return(void);
+		virtual void processTransaction();
+	
 	private:
+		ostream displayError();
+		string error;
+		
 };
 
 #endif // !transaction_return_h

@@ -16,12 +16,12 @@ public:
 	//Other Constructors
 	virtual ~DVD();
 
-	virtual void display(); //Override function, Do I need virtual on this one too?
-	bool changeStock(int num);
+	void display(); //Override function, Do I need virtual on this one too?
+	bool adjustInventory(int num);
 
 private:
 	Genre type;
-	int stock;
+	int inventory;
 	string dFName;
 	string dLName;
 	string title;

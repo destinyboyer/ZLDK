@@ -29,7 +29,10 @@ public:
 	
 
 private:
-	HashTable customers;	//Hash table of Customer*
+	HashTable* customers;	//Hash table of Customer*
+	vector<bst*> inventory; // Vector to hold pointers of bstree
+	queue<transaction> pending;
+	queue<transaction> completed;
 	BSTree database;		//BTree or something of DVD
 };
 

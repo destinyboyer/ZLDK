@@ -10,12 +10,23 @@ public:
 	Customer();
 	Customer(int ident, string fName, string lName);
 	~Customer();
-
-	void addHistoy(string transaction);
-
+	void setID(int);
+	void getID();
+	void setFirstName(string);
+	string getFirstName();
+	void setLastName(string);
+	string getLastName();
+	void setData(istream &);
+	void displayHistory();
+	void addTransaction(transaction);
+	string displayCustomer();
+	void borrow(transaction);
+	void return(transaction);
+	
 private:
 	int id;
 	string cFName;
 	string cLName;
-	vector<string> history;
+	queue<transaction> history;
+	vector<media> holding;
 };

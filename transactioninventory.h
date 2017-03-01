@@ -11,17 +11,28 @@
 -------------------------------------------------------------------------------------------------*/
 
 #pragma once
-#ifndef transaction_inventory_h
-#define transaction_inventory_h
+#ifndef inventory_transaction_h
+#define inventory_transaction_h
 
 #include "transaction.h"
 
-class Inventory : public Transaction {
+class inventoryTransaction : public Transaction {
 	public:
-	Inventory(void);
-	virtual ~Inventory(void);
-
+	inventoryTransaction(void);
+	virtual ~inventoryTransaction(void);
+	void setData(ifstream, char type);
+	void displayTransaction();
+	
+	
 	private:
+		char mediaType;
+		char genre;
+		int releaseMonth;
+		int releaseYear;
+		string director;
+		string title;
+		string firstName;
+		string lastName;
 };
 
-#endif // !transaction_inventory_h
+#endif // !inventory_transaction_h

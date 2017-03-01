@@ -20,15 +20,10 @@ class Transaction
 public:
 	Transaction(void);
 	virtual ~Transaction(void);
+	setData(ifstream, char type));
 
 private:
-};
-
-class History : public Transaction
-{
-public:
-	History(void);
-	virtual ~History(void);
-
-private:
+	char transactionType;
+	int id;
+	
 };
