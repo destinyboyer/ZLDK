@@ -3,7 +3,7 @@
 	Author:			Boyer, Destiny
 					Naranjo, Alex
 	Created:		12/8/2016
-	Modified:		2/28/2017
+	Modified:		3/1/2017
 
 	Templatized Binary Search Tree. Class has fucntionality to read from a file and build a
 	binary search tree. All responsibility on handling file stream data is on the objects
@@ -55,7 +55,7 @@ class BinarySearchTree {
 
 	private:
 
-	Node* root;	//root Node of tree
+	Node* root = nullptr;	//root Node of tree
 
 	Node* insertHelper(Node* current, NodeData* toInsert);		//helper function ro recursively insert
 	void clearHelper(Node* current);							//helper function ro recursively delete Nodes

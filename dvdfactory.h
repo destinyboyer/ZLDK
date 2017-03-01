@@ -6,7 +6,7 @@
 					Selin, Zach
 
 	Created:		2/21/2017
-	Modified:		2/28/2017
+	Modified:		3/1/2017
 
 	DVDFactory is an abstract class used to populate a vector of BinarySearchTrees. Each index
 	in the vector corresponds with a distinct BinarySearchTree that holds DVD objects of one type.

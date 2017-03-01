@@ -108,19 +108,59 @@ class Customer {
 
 	void returnMedia(Transaction& transaction);
 
-	//getters and setters
-	bool setID(int input);
-	bool setFirstName(string input);
-	bool setLastName(string input);
+	//getters
 	int getID(void) const;
 	string getFirstName(void) const;
 	string getLastName(void) const;
+
+	/*------------------------------------------------------------------------------------------------
+
+		Setter method for ID. Returns a bool indicating success.
+
+		PRECONDITIONS:
+			- input must be less than 10000
+			- input must be greater than 999
+
+		POSTCONDITIONS:
+			- sets ID to input
+
+	------------------------------------------------------------------------------------------------*/
+
+	bool setID(int input);
+
+	/*------------------------------------------------------------------------------------------------
+
+		Setter method for firstName. Returns a bool indicating success.
+
+		PRECONDITIONS:
+			- input cannot be an empty string
+
+		POSTCONDITIONS:
+			- sets firstName to input
+
+	------------------------------------------------------------------------------------------------*/
+
+	bool setFirstName(string input);
+
+	/*------------------------------------------------------------------------------------------------
+
+		Setter method for lastName. Returns a bool indicating success.
+
+		PRECONDITIONS:
+			- input cannot be an empty string
+
+		POSTCONDITIONS:
+			- sets lastName to input
+
+	------------------------------------------------------------------------------------------------*/
+
+	bool setLastName(string input);
 	
 	private:
 	
-	int ID;
-	string firstName;
-	string lastName;
+	int ID = 0;
+	string firstName = "";
+	string lastName = "";
 	queue<Transaction> history;		//history of all of a customer's transactions
 	vector<Media> holding;			//vector of media customer currently has checked out
 };

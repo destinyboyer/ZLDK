@@ -6,7 +6,7 @@
 					Selin, Zach
 
 	Created:		2/21/2017
-	Modified:		2/28/2017
+	Modified:		3/1/2017
 
 	This is a factory class to create transaction objects at runtime based on the type of
 	transaction. Different transaction types have different responsibilities in performing
@@ -19,14 +19,21 @@
 #define transactionfactory_h
 
 #include <iostream>
+#include <queue>
 #include "transaction.h"
 
 class TransactionFactory {
 
 	public:
-		TransactionFactory(void);		//constructor
-		~TransactionFactory(void);		//destructor
-		static Transaction* createTransaction(ifstream& inFile);		//creates new Transaction objects
+
+		/*------------------------------------------------------------------------------------------------
+
+			Method takes in a file stream and a Transaction queue and populates the queue with
+			Transaction objects.
+
+		------------------------------------------------------------------------------------------------*/
+
+		static Transaction* createTransaction(ifstream& inFile, queue<Transaction>);		//creates new Transaction objects
 };
 
 #endif

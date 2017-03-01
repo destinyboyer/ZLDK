@@ -69,8 +69,8 @@ class Classic : public DVD {
 
 	private:
 
-	string majorActor;
-	int releaseMonth;
+	string majorActor = "";
+	int releaseMonth = 0;
 
 };
 

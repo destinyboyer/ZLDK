@@ -6,7 +6,7 @@
 					Selin, Zach
 
 	Created:		2/21/2017
-	Modified:		2/28/2017
+	Modified:		3/1/2017
 
 	StoreManager is a Manager class that populates data members and manages the interactions
 	between customers and inventory items. Customers are stored in a HashTable, Transactions
@@ -42,7 +42,7 @@ class StoreManager {
 	/*------------------------------------------------------------------------------------------------
 
 		Method takes in a file stream and passes the file stream to the customers HashTable
-		by calling buildTable(). This populates the customer HashTable with customer objects.
+		by calling populateTable(). This populates the customer HashTable with customer objects.
 
 		PRECONDITIONS:
 			- data must be formatted for Customer objects
@@ -97,9 +97,9 @@ class StoreManager {
 
 	private:
 	
-	HashTable* customers;								//HashTable to store customers
-	vector<BinarySearchTree<DVD>*> inventory;			//vector holding pointers to inventory sets
-	queue<Transaction> pending;							//queue of Transaction to be completed
-	queue<Transaction> completed;						//queue of completed Transactions
+	HashTable* customers = nullptr;									//HashTable to store customers
+	vector<BinarySearchTree<DVD>*> inventory;						//vector holding pointers to inventory sets
+	queue<Transaction>* pending = nullptr;							//queue of Transaction to be completed
+	queue<Transaction>* completed = nullptr;						//queue of completed Transactions
 	
 };

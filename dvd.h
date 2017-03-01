@@ -24,6 +24,7 @@
 
 #include <string>
 #include "media.h"
+#include "date.h"
 
 using namespace std;
 
@@ -65,10 +66,9 @@ class DVD : public Media {
 	virtual bool operator>(const DVD& toCompare) const;
 	virtual bool operator=(const DVD& toCopy) const;
 
-	//getters and setters
+	//getters
 	string getTitle(void) const;
 	string getDirector(void) const;
-	int getReleaseYear(void) const;
 	int getInventory(void) const;
 	
 	/*------------------------------------------------------------------------------------------------
@@ -98,21 +98,6 @@ class DVD : public Media {
 	------------------------------------------------------------------------------------------------*/
 
 	bool setDirector(string input);
-
-	/*------------------------------------------------------------------------------------------------
-
-		Setter method for releaseYear. Returns a bool indicating success.
-
-		PRECONDITIONS:
-			- input must be greater than 999
-			- input must be less than 10000
-
-		POSTCONDITIONS:
-			- sets releaseYear equal to input
-
-	------------------------------------------------------------------------------------------------*/
-
-	bool setReleaseYear(int input);
 	
 	/*------------------------------------------------------------------------------------------------
 
@@ -131,10 +116,10 @@ class DVD : public Media {
 
 	private:
 
-	string title;
-	string director;
-	int releaseYear;
-	int inventory;
+	string title = "";
+	string director = "";
+	int inventory = 0;
+	Date* date = nullptr;
 
 };
 
