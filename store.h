@@ -4,8 +4,9 @@
 -------------------------------------------------------------------------------------------------*/
 
 #pragma once
-#ifndef  store_h
-#define store_h
+#ifndef storemanager_h
+#define storemanager_h
+
 
 #include "dvd.h"
 #include "customer.h"
@@ -13,9 +14,10 @@
 #include "hashtable.h"
 using namespace std;
 
-class Store
+class StoreManager
 {
 public:
+
 	Store();
 	//Other constructors
 	~Store();
@@ -35,5 +37,3 @@ private:
 	queue<transaction> completed;
 	BSTree database;		//BTree or something of DVD
 };
-
-#endif

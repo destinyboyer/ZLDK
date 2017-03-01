@@ -1,68 +1,140 @@
+/*-------------------------------------------------------------------------------------------------
+
+	Authors:		Boyer, Destiny
+					Bushey, Luke
+					King, Garret
+					Selin, Zach
+
+	Created:		2/21/2017
+	Modified:		3/1/2017
+
+	This class represents a DVD object. Each object stores information about the title, director,
+	release year, and number of copies in inventory. Getter and setter methods are available
+	for all data members. This class has the functionality to take in a data stream with the
+	method setData() in order to populate its data members. Overloaded comparison operators
+	allow for comparing DVD objects, and the method adjustInventory() can be called to increase
+	or decrease the inventory amount. The method display() will neatly print a DVD object's
+	information to the console.
+
+-------------------------------------------------------------------------------------------------*/
+
 #pragma once
+#ifndef dvd_h
+#define dvd_h
+
 #include <string>
+#include "media.h"
+
 using namespace std;
 
-enum Genre{F, D, C};
-struct Date 
-{
-	int month;
-	int year;
-};
+class DVD : public Media {
 
-class DVD
-{
-public:
-	DVD();
-	//Other Constructors
-	virtual ~DVD();
+	public:
 
-	void display(); //Override function, Do I need virtual on this one too?
-	bool adjustInventory(int num);
+	virtual DVD(void);				//default no-args constructor
+	virtual ~DVD(void);				//default destructor
+	virtual DVD(DVD& toCopy);		//copy constructor, creates deep copy
+	
+	/*------------------------------------------------------------------------------------------------
 
-private:
-	Genre type;
-	int inventory;
-	string dFName;
-	string dLName;
+		Method takes in a file stream and populates the DVD's data members by calling the
+		setter methods. Setters are used as hepler methods for error checking. If any setter
+		method returns false, then setData will return false and the object should be deleted.
+
+		PRECONDITIONS:
+			- data must be formatted for DVD objects
+
+	------------------------------------------------------------------------------------------------*/
+
+	virtual bool setData(ifstream& inFile);
+
+	/*------------------------------------------------------------------------------------------------
+
+		Method prints all information of a DVD object to the console in an easy-to-read format.
+
+		NOTES:	Method cannot change any data members.
+
+	------------------------------------------------------------------------------------------------*/
+
+	virtual void display(void) const;
+
+	//overloaded comparison operators
+	virtual bool operator==(const DVD& toCompare) const;
+	virtual bool operator!=(const DVD& toCompare) const;
+	virtual bool operator<(const DVD& toCompare) const;
+	virtual bool operator>(const DVD& toCompare) const;
+	virtual bool operator=(const DVD& toCopy) const;
+
+	string getTitle(void) const;
+	string getDirector(void) const;
+	int getReleaseYear(void) const;
+	int getInventory(void) const;
+	
+	/*------------------------------------------------------------------------------------------------
+
+		Setter method for title. Returns a bool indicating success.
+
+		PRECONDITIONS:
+			- input cannot be an empty string
+
+		POSTCONDITIONS:
+			- sets title equal to input
+
+	------------------------------------------------------------------------------------------------*/
+
+	bool setTitle(string input);
+
+	/*------------------------------------------------------------------------------------------------
+
+		Setter method for director. Returns a bool indicating success.
+
+		PRECONDITIONS:
+			- input cannot be an empty string
+
+		POSTCONDITIONS:
+			- sets director equal to input
+
+	------------------------------------------------------------------------------------------------*/
+
+	bool setDirector(string input);
+
+	/*------------------------------------------------------------------------------------------------
+
+		Setter method for releaseYear. Returns a bool indicating success.
+
+		PRECONDITIONS:
+			- input must be greater than 999
+			- input must be less than 10000
+
+		POSTCONDITIONS:
+			- sets releaseYear equal to input
+
+	------------------------------------------------------------------------------------------------*/
+
+	bool setReleaseYear(int input);
+	
+	/*------------------------------------------------------------------------------------------------
+
+		Method decreases or increases the inventory of a DVD object. Returns a bool indicating
+		success.
+
+		PRECONDITIONS:
+			- inventory + input != 0
+
+		POSTCONDITIONS:
+			- sets inventory equal to inventory + input
+
+	------------------------------------------------------------------------------------------------*/
+	
+	bool adjustInventory(int input);
+
+	private:
+
 	string title;
-};
-
-class Classic : public DVD
-{
-public:
-	Classic();
-	virtual ~Classic();
-
-	virtual void display();
-
-private:
-	string aFName;
-	string aLName;
-	Date release;
-};
-
-//Do we need different for comedy and drama?
-class Drama : public DVD
-{
-public:
-	Drama();
-	virtual ~Drama();
-
-	virtual void display();
-
-private:
-	int year;
-};
-
-class Comedy : public DVD
-{
-public:
-	Comedy();
-	virtual ~Comedy();
-
-	virtual void display();
-
-private:
-	int year;
+	string director;
+	int releaseYear;
+	int inventory;
 
 };
+
+#endif // !dvd_h
