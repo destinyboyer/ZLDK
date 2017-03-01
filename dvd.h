@@ -65,6 +65,7 @@ class DVD : public Media {
 	virtual bool operator>(const DVD& toCompare) const;
 	virtual bool operator=(const DVD& toCopy) const;
 
+	//getters and setters
 	string getTitle(void) const;
 	string getDirector(void) const;
 	int getReleaseYear(void) const;
