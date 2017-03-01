@@ -59,13 +59,6 @@ class DVD : public Media {
 
 	virtual void display(void) const;
 
-	//overloaded comparison operators
-	virtual bool operator==(const DVD& toCompare) const;
-	virtual bool operator!=(const DVD& toCompare) const;
-	virtual bool operator<(const DVD& toCompare) const;
-	virtual bool operator>(const DVD& toCompare) const;
-	virtual bool operator=(const DVD& toCopy) const;
-
 	//getters
 	string getTitle(void) const;
 	string getDirector(void) const;
@@ -113,6 +106,13 @@ class DVD : public Media {
 	------------------------------------------------------------------------------------------------*/
 	
 	bool adjustInventory(int input);
+
+	//overloaded comparison operators
+	virtual bool operator==(const DVD& toCompare) const;
+	virtual bool operator!=(const DVD& toCompare) const;
+	virtual bool operator<(const DVD& toCompare) const;
+	virtual bool operator>(const DVD& toCompare) const;
+	virtual DVD& operator=(const DVD& toCopy) const;
 
 	private:
 

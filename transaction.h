@@ -26,8 +26,9 @@ class Transaction {
 
 	public:
 	
-	virtual Transaction(void);		//deafult no-args constructor
-	virtual ~Transaction(void);		//destructor
+	virtual Transaction(void);							//deafult no-args constructor
+	virtual Transaction(const Transaction& tocopy);		//copy constructor
+	virtual ~Transaction(void);							//destructor
 	
 	/*------------------------------------------------------------------------------------------------
 
@@ -83,6 +84,8 @@ class Transaction {
 	------------------------------------------------------------------------------------------------*/
 
 	bool setTransactionType(char input);
+
+	virtual Transaction& operator=(const Transaction& toCopy);
 
 	private:
 	

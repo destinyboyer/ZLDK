@@ -155,6 +155,8 @@ class Customer {
 	------------------------------------------------------------------------------------------------*/
 
 	bool setLastName(string input);
+
+	Customer& operator=(const Customer& toCopy);
 	
 	private:
 	

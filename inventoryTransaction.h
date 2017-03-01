@@ -23,6 +23,10 @@ class InventoryTransaction : public Transaction {
 
 	public:
 
+	InventoryTransaction(void);								//default no-args constructor
+	InventoryTransaction(InventoryTransaction& toCopy);		//copy constructo
+	~InventoryTransaction(void);							//destructor
+
 	bool setData(ifstream& inFile, char type);
 	void displayTransaction(void) const;
 
@@ -34,7 +38,32 @@ class InventoryTransaction : public Transaction {
 	string getFirstName(void) const;
 	string getLastName(void) const;
 
+	/*------------------------------------------------------------------------------------------------
+
+		Setter method for mediaType. Returns a bool indicating success.
+
+		PRECONDITIONS:
+			- input cannot be an empty character
+
+		POSTCONDITIONS:
+			- sets mediaType to input
+
+	------------------------------------------------------------------------------------------------*/
+
 	bool setMediaType(char input);
+
+	/*------------------------------------------------------------------------------------------------
+
+		Setter method for genre. Returns a bool indicating success.
+
+		PRECONDITIONS:
+			- input cannot be an empty character
+
+		POSTCONDITIONS:
+			- sets genre to input
+
+	------------------------------------------------------------------------------------------------*/
+
 	bool setGenre(char input);
 
 	/*------------------------------------------------------------------------------------------------
@@ -92,6 +121,8 @@ class InventoryTransaction : public Transaction {
 	------------------------------------------------------------------------------------------------*/
 
 	bool setFirstName(string input);
+
+	InventoryTransaction& operator=(const InventoryTransaction& toCopy);
 	
 	private:
 

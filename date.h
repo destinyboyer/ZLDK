@@ -88,6 +88,8 @@ class Date {
 
 	bool setDay(int input);
 
+	Date& operator=(const Date& toCopy);
+
 	private:
 
 	int year = 0;

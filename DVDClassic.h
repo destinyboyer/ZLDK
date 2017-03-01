@@ -67,6 +67,8 @@ class Classic : public DVD {
 
 	bool setMonth(string input);
 
+	Classic& operator=(const Classic& toCopy);
+
 	private:
 
 	string majorActor = "";
