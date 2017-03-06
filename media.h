@@ -1,28 +1,29 @@
-/*-------------------------------------------------------------------------------------------------
-
-	Authors:		Boyer, Destiny
-					Bushey, Luke
-					King, Garret
-					Selin, Zach
-
-	Created:		2/21/2017
-	Modified:		3/1/2017
-
-	High-level parent class for Media types for the store. Increases extensibility.
-
--------------------------------------------------------------------------------------------------*/
-
 #pragma once
 #ifndef media_h
 #define media_h
 
-class Media {
+#include "Date.h"
 
-	public:
+using namespace std;
 
-	virtual Media(void);		//default no-args constructor
-	virtual ~Media(void);		//destructor
+class Media
+{
+public:
+	Media(void);
+	virtual ~Media(void);
 
+	bool adjustInventory(int input);
+
+	int getInventory(void) const;
+
+	virtual bool operator==(const Media& toCompare) const;
+	virtual bool operator!=(const Media& toCompare) const;
+	virtual bool operator<(const Media& toCompare) const;
+	virtual bool operator>(const Media& toCompare) const;
+
+protected:
+	Date* date = nullptr;
+	int inventory = 0;
 };
 
-#endif // !media_h
+#endif

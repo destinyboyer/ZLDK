@@ -1,0 +1,81 @@
+#include "stdafx.h"
+#include "Media.h"
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+//																			  //
+//							Constructors / Destructors						  //
+//																			  //
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+Media::Media()
+{
+}
+
+
+Media::~Media()
+{
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+//																			  //
+//								Public Methods								  //
+//																			  //
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+bool Media::adjustInventory(int input)
+{
+	this->inventory += input;
+	if (inventory >= 0)
+		return true;
+	this->inventory = 0;
+	return false;
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+//								Getters / Setters							  //
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+int Media::getInventory(void) const
+{
+	return this->inventory;
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+//									Operators								  //
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+bool Media::operator==(const Media & toCompare) const
+{
+	return (this->date == toCompare.date);
+}
+
+bool Media::operator!=(const Media & toCompare) const
+{
+	return !(*this == toCompare);
+}
+
+bool Media::operator<(const Media & toCompare) const
+{
+	return (this->date < toCompare.date);
+}
+
+bool Media::operator>(const Media & toCompare) const
+{
+	return (this->date > toCompare.date);
+}
