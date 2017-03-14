@@ -48,14 +48,14 @@ bool DVD::setData(istream & inFile)
 	// This line removes all content up until the next comma
 	getline(inFile, temp, ',');
 	
-	inFile >> temp;						//gets inventory number
+	inFile >> tempNum;						//gets inventory number
 	
 	if (tempNum > -1) {					//sets inventory if temp >= 0
 		this->adjustInventory(tempNum);
 	}
 
+	getline(inFile, temp, ',');			//clears line
 	getline(inFile, temp, ',');			//fills temp with director's name
-
 	directorSuccess = this->setDirector(temp);
 
 	getline(inFile, temp, ',');			//fills temp wih the title
@@ -71,6 +71,7 @@ bool DVD::setData(istream & inFile)
 	{
 		success = true;
 	}
+	getline(inFile, temp);
 	return success;
 }
 
