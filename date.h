@@ -28,6 +28,7 @@ class Date
 public:
 
 	Date(void);
+	Date(const Date& toCopy);
 	~Date(void);
 
 	bool setData(istream& inFile);
