@@ -1,3 +1,20 @@
+/*-------------------------------------------------------------------------------------------------
+
+	Authors:		Boyer, Destiny
+					Selin, Zach
+
+	Created:		2/21/2017
+	Modified:		3/1/2017
+
+	This class represents a customer object. Each object stores the customer's first and last
+	names, a unique customer ID, a history of the customer's transactions, and a queue of
+	which media items the customer is holding (still has checked out). This class has the
+	functionality to take in a data stream with the method setData() in order to populate its
+	data members. The method displayCustomer() will neatly print a customer object's
+	information to the console.
+
+-------------------------------------------------------------------------------------------------*/
+
 #pragma once
 #ifndef customer_h
 #define customer_h
@@ -20,7 +37,7 @@ class Customer
 {
 public:
 	Customer(void);
-//	Customer(const Customer& toCopy);
+	Customer(const Customer& toCopy);
 	~Customer(void);
 	
 	bool setData(istream& inFile);
@@ -39,7 +56,7 @@ public:
 	bool setFirstName(string input);
 	bool setLastName(string input);
 
-//	Customer& operator=(const Customer& toCopy);
+	Customer& operator=(const Customer& toCopy);
 	
 private:
 	int ID = 0;

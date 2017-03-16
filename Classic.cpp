@@ -43,8 +43,8 @@ bool Classic::setData(istream & inFile)
 	bool success = false;
 	bool directorSuccess, actorSuccess, titleSuccess, monthSuccess, yearSuccess;
 	string temp, first, last;
-	int tempNum;
-	this->setType(inFile.get());
+	int tempNum = -1;
+	//this->setType(inFile.get());
 	// This line removes all content up until the next comma
 	getline(inFile, temp, ',');
 	
@@ -84,7 +84,7 @@ bool Classic::setData(istream & inFile)
 	return success;
 }
 
-void Classic::display(void)
+void Classic::display(void) const
 {
 	cout << this->type << ", " << this->inventory << ", " << this->director
 		<< ", " << this->title << ", " << this->majorActor << " "

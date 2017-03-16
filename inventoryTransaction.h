@@ -1,3 +1,15 @@
+/*-------------------------------------------------------------------------------------------------
+
+	Authors:		Boyer, Destiny
+					Selin, Zach
+
+	Created:		2/21/2017
+	Modified:		3/1/2017
+
+	This class represents a Transction affects the store's inventory.
+
+-------------------------------------------------------------------------------------------------*/
+
 #pragma once
 #ifndef inventorytransaction_h
 #define inventorytransaction_h

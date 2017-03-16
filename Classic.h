@@ -25,12 +25,12 @@ class Classic : public DVD
 
 public:
 
-	Classic(void);				//good
+	Classic(void);				
 	Classic(const Classic& toCopy);
-	~Classic(void);				//good
+	~Classic(void);
 
 	bool setData(istream& inFile);
-	void display(void);
+	void display(void) const;
 
 	string getActor(void) const;
 	int getMonth(void) const;
