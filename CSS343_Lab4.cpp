@@ -11,6 +11,7 @@ int main()
 	StoreManager store = StoreManager();
 	ifstream customerInFile("data4customers.txt");
 	ifstream movieInFile("data4movies.txt");
+	ifstream transactionInFile("data4commands.txt");
 	
 
 	// Reading in customers
@@ -29,7 +30,17 @@ int main()
 		return 1;
 	}
 	store.setInventory(movieInFile);
+	store.displayInventory();
 
+
+	// Reading in transactions
+	if (!transactionInFile)
+	{
+		cout << "Transaction file could not be opened." << endl;
+		return 1;
+	}
+	store.setTransactions(transactionInFile);
+	store.displayTransactions();
 
 
 	

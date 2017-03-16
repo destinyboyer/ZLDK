@@ -2,14 +2,16 @@
 #ifndef storemanager_h
 #define storemanager_h
 
-#include <queue>
 #include <vector>
+#include <stack>
 #include "HashTable.h"
 #include "DVD.h"
 #include "Comedy.h"
 #include "Drama.h"
 #include "Classic.h"
 #include "Customer.h"
+#include "Transaction.h"
+#include "TransactionFactory.h"
 #include "BinarySearchTree.h"
 
 using namespace std;
@@ -23,11 +25,19 @@ public:
 	StoreManager(void);
 	~StoreManager(void);
 
+	void displayCustomers() const;
+	void displayTransactions();
+	void displayInventory() const;
+
 	bool setCustomers(ifstream& inFile);
 	bool setInventory(ifstream& inFile);
-	
+	// This method utilizes a transactionFactory for transaction creation
+	bool setTransactions(ifstream& inFile);
+
 private:
 	HashTable* customers = nullptr;
+	queue<Transaction*> pendingTransactions;
+	queue<Transaction*> completeTransactions;
 
 	// Our inventory in this implementation holds 3 DVD trees.
 	// These trees are specified by their genre.

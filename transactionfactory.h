@@ -1,6 +1,8 @@
 /*-------------------------------------------------------------------------------------------------
 	
 	Authors:		Boyer, Destiny
+					Bushey, Luke
+					King, Garret
 					Selin, Zach
 
 	Created:		2/21/2017
@@ -18,8 +20,8 @@
 
 #include <iostream>
 #include <queue>
-#include "transaction.h"
-#include "inventoryTransaction.h"
+#include "Transaction.h"
+#include "InventoryTransaction.h"
 
 class TransactionFactory {
 
@@ -28,43 +30,11 @@ class TransactionFactory {
 		/*------------------------------------------------------------------------------------------------
 
 			Method takes in a file stream and a Transaction queue and populates the queue with
-			Transaction objects.
+			a single Transaction object
 
 		------------------------------------------------------------------------------------------------*/
 
-		static void buildTransactions(istream& inFile, queue<Transaction>*);		//creates new Transaction objects
+		static Transaction* createTransaction(istream& inFile, queue<Transaction*>);
 };
 
 #endif
-
-void TransactionFactory::buildTransactions(istream& inFile, queue<Transaction>* process) {
-	char temp = ' ';
-	bool successfulRead = false;
-	bool success = false;
-	Transaction* ptr;
-
-	inFile >> temp;
-
-	while (true) {
-		if (temp == 'B' || temp == 'R') {
-
-			ptr = new InventoryTransaction();
-
-		} else if (temp == 'H') {
-			ptr = new Transaction();
-		}
-
-		successfulRead = ptr->setData(inFile, temp);
-
-		if (inFile.eof()) {
-			delete ptr;
-			break;
-		}
-
-		if (successfulRead) {
-			process->push(*ptr);
-		} else {
-			delete ptr;
-		}
-	}
-}
