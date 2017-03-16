@@ -65,6 +65,7 @@ bool InventoryTransaction::setData(istream & inFile, char type)
 	switch (this->getGenre())
 	{
 	case 'F':
+		inFile.get();
 		getline(inFile, tempString, ',');
 		titleSuccess = this->setTitle(tempString);
 
@@ -74,9 +75,11 @@ bool InventoryTransaction::setData(istream & inFile, char type)
 		success = (titleSuccess && yearSuccess);
 		break;
 	case 'D':
+		inFile.get();
 		getline(inFile, tempString, ',');
 		directorSuccess = this->setDirector(tempString);
 
+		inFile.get();
 		getline(inFile, tempString, ',');
 		titleSuccess = this->setTitle(tempString);
 		
@@ -88,10 +91,12 @@ bool InventoryTransaction::setData(istream & inFile, char type)
 
 		inFile >> tempInt;
 		yearSuccess = this->setYear(tempInt);
-
+		
+		inFile.get();
 		inFile >> tempString;
 		firstNameSuccess = this->setFirstName(tempString);
 
+		inFile.get();
 		inFile >> tempString;
 		lastNameSuccess = this->setLastName(tempString);
 		
