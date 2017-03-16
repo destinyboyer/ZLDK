@@ -1,10 +1,15 @@
+#include "stdafx.h"
 #include "transaction.h"
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //																								//
 //								Constructors / Destructors										//
 //																								//
 //////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 Transaction::Transaction(void) {
 
@@ -18,20 +23,33 @@ Transaction::~Transaction(void) {
 
 }
 
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //																								//
 //										Public Methods											//
 //																								//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
 bool Transaction::setData(istream& inFile, char type)
 {	
 	int temp;
+	string tempString;
 	bool success = false;
 
-	transactionType = type;
+	this->setTransactionType(type);
+	// An 'I' command does not give customer ID, so we just return
+	if (this->transactionType == 'I')
+	{
+		getline(inFile, tempString);	// New line
+		return true;
+	}
 
 	inFile >> temp;
+
+	getline(inFile, tempString);		// New line
 
 	success = this->setCustomerID(temp);
 
@@ -40,13 +58,23 @@ bool Transaction::setData(istream& inFile, char type)
 
 void Transaction::displayTransaction(void) const
 {
+	cout << this->getTransationType();
+	if (this->getTransationType() == 'H')
+	{
+		cout << " " << this->getCustomerID();
+	}
+	cout << endl;
 }
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //																								//
 //									Getters / Setters											//
 //																								//
 //////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 int Transaction::getCustomerID(void) const
 {

@@ -15,6 +15,7 @@
 #define media_h
 
 #include "Date.h"
+#include <iostream>
 
 using namespace std;
 
@@ -26,6 +27,8 @@ public:
 	virtual ~Media(void);
 
 	virtual bool setData(istream& inFile);
+	virtual void display(void) const;
+
 	bool adjustInventory(int input);
 
 	int getInventory(void) const;

@@ -1,0 +1,26 @@
+#include "stdafx.h"
+#include "Comedy.h"
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+//																			  //
+//							Constructors / Destructors						  //
+//																			  //
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+Comedy::Comedy()
+{
+}
+
+Comedy::Comedy(const Comedy & toCopy)
+{
+	*this = toCopy;
+}
+
+
+Comedy::~Comedy()
+{
+}
