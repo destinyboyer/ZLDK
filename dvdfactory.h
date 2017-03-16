@@ -41,13 +41,15 @@ class DVDFactory {
 		in order to populate data members.
 		------------------------------------------------------------------------------------------------*/
 
-	void buildInventory(istream& inFile, vector<BinarySearchTree<DVD>*> inventory) {
+	void buildInventory(istream& inFile, vector<BinarySearchTree<DVD>*>* inventory) {
 		DVD* temp = nullptr;
 		char type;
-		bool successfulRead;                            // read good data
-		bool success;                                   // successfully insert
+		bool successfulRead = false;                            // read good data
+		bool success = false;                                   // successfully insert
 		int BST = -1;
+		string tp = "";
 		while (true) {
+			success = false;
 			inFile >> type;
 
 			if (type == 'C') {
@@ -64,13 +66,14 @@ class DVDFactory {
 				BST = 0;
 			}
 			if (successfulRead) {
-				success = inventory[BST]->insert(temp);
+				success = (*inventory)[BST]->insert(temp);
 			} else {
 				delete temp;
 			}
 			if (!success) {
 				break;
 			}
+		
 		}
 	}
 };

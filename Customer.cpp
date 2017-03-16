@@ -32,7 +32,7 @@ bool Customer::setData(istream & inFile)
 	int tempID = 0;
 	string tempFirst = "";
 	string tempLast = "";
-	inFile >> tempID;
+	inFile >> tempID >> tempFirst >> tempLast;
 
 	if (setID(tempID) == true &&
 		setFirstName(tempFirst) == true
@@ -40,6 +40,7 @@ bool Customer::setData(istream & inFile)
 	{
 		success = true;
 	}
+	this->displayCustomer();
 	return success;
 }
 

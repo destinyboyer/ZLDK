@@ -2,6 +2,7 @@
 #include "StoreManager.h"
 
 
+
 ////////////////////////////////////////////////////////////////////////////////
 //																			  //
 //							Constructors / Destructors						  //
@@ -12,11 +13,28 @@
 
 StoreManager::StoreManager()
 {
+	customers = new HashTable();
+	inventory = new vector<BinarySearchTree<DVD>*>;
+	//inventory[ComedyDVD] = new BinarySearchTree<DVD>();
+	//inventory[DramaDVD] = new BinarySearchTree<DVD>();
+	//inventory[ClassicDVD] = new BinarySearchTree<DVD>();
 }
 
 
 StoreManager::~StoreManager()
 {
+	delete customers;
+	customers = nullptr;
+	//delete inventory[ComedyDVD];
+	//inventory[ComedyDVD] = nullptr;
+	//delete inventory[DramaDVD];
+	//inventory[DramaDVD] = nullptr;
+	//delete inventory[ClassicDVD];
+	//inventory[ClassicDVD] = nullptr;
+	//inventory->operator[](DramaDVD)->clear();
+	//inventory->operator[](ComedyDVD)->clear();
+	//inventory->operator[](ClassicDVD)->clear();
+	delete inventory;
 }
 
 void StoreManager::displayCustomers() const
@@ -48,11 +66,12 @@ void StoreManager::displayTransactions()
 void StoreManager::displayInventory() const
 {
 	cout << "~ ComedyDVD BST Display ~" << endl;
-	this->inventory[ComedyDVD]->display();
+	 //this->inventory[ComedyDVD]->display();
+	 this->inventory->operator[](ComedyDVD)->display();
 	cout << "~ DramaDVD BST Display ~" << endl;
-	this->inventory[DramaDVD]->display();
+	//this->inventory[DramaDVD]->display();
 	cout << "~ ClassicDVD BST Display ~" << endl;
-	this->inventory[ClassicDVD]->display();
+	this->inventory->operator[](ClassicDVD)->display();
 }
 
 
@@ -72,24 +91,23 @@ bool StoreManager::setCustomers(ifstream & inFile)
 		delete customers;
 	}
 	customers = new HashTable();
-	customers->populateTable(inFile);
-	return false;
+	return customers->populateTable(inFile);
 }
 
 bool StoreManager::setInventory(ifstream & inFile)
 {
 	// Delete any current trees safely
-	while (this->inventory.size() > 0)
+	while (this->inventory->size() > 0)
 	{
-		delete this->inventory[inventory.size() - 1];
-		inventory.pop_back();
+		delete this->inventory->operator[](inventory->size() - 1);
+		inventory->pop_back();
 	}
 
 	BinarySearchTree<DVD>* curTree;
 	for (int i = 0; i < NUM_OF_INVENTORY_TREES; i++)
 	{
 		curTree = new BinarySearchTree<DVD>();
-		this->inventory.push_back(curTree);
+		this->inventory->push_back(curTree);
 	}
 
 //<<<<<<< Updated upstream

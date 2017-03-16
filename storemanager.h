@@ -44,7 +44,7 @@ private:
 	// Our inventory in this implementation holds 3 DVD trees.
 	// These trees are specified by their genre.
 	enum BSTMediaType { ComedyDVD, DramaDVD, ClassicDVD };
-	vector<BinarySearchTree<DVD>*> inventory;
+	vector<BinarySearchTree<DVD>*>* inventory;
 
 	// return int 'type' returns the enum for the correct tree.
 	DVD* createDVD(istream& inFile, int& type);
