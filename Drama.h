@@ -23,8 +23,9 @@ class Drama : public DVD
 {
 public:
 
-	Drama(void) {};
-	~Drama(void) {};
+	Drama(void);
+	Drama(const Drama& toCopy);
+	~Drama(void);
 
 };
 

@@ -22,7 +22,11 @@ private:
 
 		Node(void) : data(nullptr), left(nullptr), right(nullptr) {};
 		Node(NodeData* d) : data(d), left(nullptr), right(nullptr) {};
-		Node(NodeData* d, Node* l, Node* r) : data(d), left(l), right(r) {};
+		Node(NodeData* d, Node* l, Node* r) /*: data(d), left(l), right(r)*/ {
+			data = d;
+			left = l;
+			right = r;
+		};
 	};
 
 public:
@@ -195,7 +199,7 @@ void BinarySearchTree<NodeData>::displayHelper(Node* current) const {
 	}
 	else {
 		displayHelper(current->left);
-		current->data->toString();
+		current->data->display();
 		displayHelper(current->right);
 	}
 };

@@ -20,6 +20,7 @@
 
 #include <istream>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -88,7 +89,7 @@ class Transaction {
 
 	//virtual Transaction& operator=(const Transaction& toCopy);
 
-	private:
+	protected:
 	
 	char transactionType = ' ';
 	int customerID = 0;

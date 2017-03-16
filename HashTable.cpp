@@ -56,7 +56,6 @@ bool HashTable::populateTable(ifstream & inFile)
 		insCustomer = new Customer();
 		insCustomer->setData(ss);
 		this->insert(insCustomer);
-		insCustomer->displayCustomer();
 		inFile.get();
 	}
 	return true;

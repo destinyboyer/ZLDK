@@ -19,6 +19,42 @@ StoreManager::~StoreManager()
 {
 }
 
+void StoreManager::displayCustomers() const
+{
+	cout << "<displayCustomers>" << endl;
+}
+
+void StoreManager::displayTransactions()
+{
+	// This is not ideal - should change if included in final project
+	queue<Transaction*> movedTransactions;
+	int size;
+	// Copy over and print
+	size = this->pendingTransactions.size();
+	for (int i = 0; i < size; i++)
+	{
+		movedTransactions.push(this->pendingTransactions.front());
+		this->pendingTransactions.front()->displayTransaction();
+		this->pendingTransactions.pop();
+	}
+	// Copy back
+	for (int i = 0; i < size; i++)
+	{
+		this->pendingTransactions.push(movedTransactions.front());
+		movedTransactions.pop();
+	}
+}
+
+void StoreManager::displayInventory() const
+{
+	cout << "~ ComedyDVD BST Display ~" << endl;
+	this->inventory[ComedyDVD]->display();
+	cout << "~ DramaDVD BST Display ~" << endl;
+	this->inventory[DramaDVD]->display();
+	cout << "~ ClassicDVD BST Display ~" << endl;
+	this->inventory[ClassicDVD]->display();
+}
+
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -77,6 +113,7 @@ bool StoreManager::setInventory(ifstream & inFile)
 				this->inventory[insertTree]->retrieve(*InsertDVD, baseMedia);
 				// THIS IS WHERE YOU LEFT OFF
 			}
+			// if we *don't* enter the above 'if body', then we have successfully inserted (not a duplicate)
 		}
 		else
 		{
@@ -88,6 +125,23 @@ bool StoreManager::setInventory(ifstream & inFile)
 
 
 	return false;
+}
+
+bool StoreManager::setTransactions(ifstream & inFile)
+{
+	// Our do-while loop creates transactions using a static method from TransactionFactory
+	// TO DO: Needs to stop upon .eof
+	Transaction* transPtr = nullptr;
+	// Could be converted to while(true)
+	do {
+		transPtr = TransactionFactory::createTransaction(inFile, this->pendingTransactions);
+		if (transPtr != NULL)
+		{
+			this->pendingTransactions.push(transPtr);
+		}
+	} while (!inFile.eof());
+
+	return true;
 }
 
 

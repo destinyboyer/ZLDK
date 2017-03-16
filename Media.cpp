@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Media.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,6 +34,11 @@ bool Media::setData(istream& inFile)
 	bool success = false;
 
 	return success;
+}
+
+void Media::display(void) const
+{
+	cout << "Media Object" << endl;
 }
 
 /*-------------------------------------------------------------------------------------------------

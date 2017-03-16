@@ -23,8 +23,9 @@ class Comedy : public DVD
 {
 public:
 
-	Comedy(void) {};
-	~Comedy(void) {};
+	Comedy(void);
+	Comedy(const Comedy& toCopy);
+	~Comedy(void);
 };
 
 #endif

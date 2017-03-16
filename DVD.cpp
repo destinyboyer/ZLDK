@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "DVD.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,7 +18,7 @@ DVD::~DVD(void)
 
 DVD::DVD(const DVD& toCopy)
 {
-	this->date = new Date();
+	this->date = toCopy.date;
 	*this = toCopy;
 }
 
@@ -86,7 +87,7 @@ bool DVD::setData(istream & inFile)
 void DVD::display(void) const
 {
 	cout << this->type << ", " << this->inventory << ", " << this->director 
-		<< ", " << this->title << ", " << this->date->getYear() << endl;
+		<< ", " << this->title << ", " << this->getYear() << endl;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -118,6 +119,7 @@ char DVD::getType(void) const
 
 string DVD::getTitle(void) const
 {
+
 	return this->title;
 }
 
