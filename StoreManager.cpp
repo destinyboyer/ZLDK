@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "StoreManager.h"
 
 
@@ -85,46 +85,80 @@ bool StoreManager::setInventory(ifstream & inFile)
 		inventory.pop_back();
 	}
 
-	BinarySearchTree<Media>* curTree;
+	BinarySearchTree<DVD>* curTree;
 	for (int i = 0; i < NUM_OF_INVENTORY_TREES; i++)
 	{
-		curTree = new BinarySearchTree<Media>();
+		curTree = new BinarySearchTree<DVD>();
 		this->inventory.push_back(curTree);
 	}
 
-	DVD* InsertDVD;
-	string info;
-	stringstream ss;
-	int insertTree;
-	inFile.get();
-	while (!inFile.eof())
-	{
-		inFile.unget();
-		getline(inFile, info);
-		ss.str(info);
-		ss.clear();
-		InsertDVD = createDVD(ss, insertTree);
-		if (InsertDVD != NULL)
-		{
-			if (!this->inventory[insertTree]->insert(InsertDVD))
-			{
-				// if insert returns false, that means we are dealing with a duplicate movie
-				Media* baseMedia, cur;
-				this->inventory[insertTree]->retrieve(*InsertDVD, baseMedia);
-				// THIS IS WHERE YOU LEFT OFF
-			}
-			// if we *don't* enter the above 'if body', then we have successfully inserted (not a duplicate)
-		}
-		else
-		{
-			cout << "\n\tERROR: Invalid movie entry:. The inventory request has been deleted.\n" << endl;
+//<<<<<<< Updated upstream
+//	DVD* InsertDVD;
+//	string info;
+//	stringstream ss;
+//	int insertTree;
+//	inFile.get();
+//	while (!inFile.eof())
+//	{
+//		inFile.unget();
+//		getline(inFile, info);
+//		ss.str(info);
+//		ss.clear();
+//		InsertDVD = createDVD(ss, insertTree);
+//		if (InsertDVD != NULL)
+//		{
+//			if (!this->inventory[insertTree]->insert(InsertDVD))
+//			{
+//				// if insert returns false, that means we are dealing with a duplicate movie
+//				Media* baseMedia, cur;
+//				this->inventory[insertTree]->retrieve(*InsertDVD, baseMedia);
+//				// THIS IS WHERE YOU LEFT OFF
+//			}
+//			// if we *don't* enter the above 'if body', then we have successfully inserted (not a duplicate)
+//		}
+//		else
+//		{
+//			cout << "\n\tERROR: Invalid movie entry:. The inventory request has been deleted.\n" << endl;
+//
+//		}
+//		inFile.get();
+//	}
 
-		}
-		inFile.get();
-	}
+	DVDFactory factory;
+	factory.buildInventory(inFile, inventory);
+
+	//DVD* InsertDVD;
+	//string info;
+	//stringstream ss;
+	//int insertTree;
+	//inFile.get();
+	//while (!inFile.eof())
+	//{
+	//	inFile.unget();
+	//	getline(inFile, info);
+	//	ss.str(info);
+	//	ss.clear();
+	//	InsertDVD = createDVD(ss, insertTree);
+	//	if (InsertDVD != NULL)
+	//	{
+	//		if (!this->inventory[insertTree]->insert(InsertDVD))
+	//		{
+	//			// if insert returns false, that means we are dealing with a duplicate movie
+	//			Media* baseMedia, cur;
+	//			this->inventory[insertTree]->retrieve(*InsertDVD, baseMedia);
+	//			// THIS IS WHERE YOU LEFT OFF
+	//		}
+	//	}
+	//	else
+	//	{
+	//		cout << "\n\tERROR: Invalid movie entry:. The inventory request has been deleted.\n" << endl;
+
+	//	}
+	//	inFile.get();
+	//}
 
 
-	return false;
+	return true;
 }
 
 bool StoreManager::setTransactions(ifstream & inFile)

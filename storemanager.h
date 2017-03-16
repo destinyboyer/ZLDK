@@ -13,6 +13,7 @@
 #include "Transaction.h"
 #include "TransactionFactory.h"
 #include "BinarySearchTree.h"
+#include "dvdfactory.h"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ public:
 	StoreManager(void);
 	~StoreManager(void);
 
+//<<<<<<< Updated upstream
 	void displayCustomers() const;
 	void displayTransactions();
 	void displayInventory() const;
@@ -35,14 +37,14 @@ public:
 	bool setTransactions(ifstream& inFile);
 
 private:
+
 	HashTable* customers = nullptr;
 	queue<Transaction*> pendingTransactions;
 	queue<Transaction*> completeTransactions;
-
 	// Our inventory in this implementation holds 3 DVD trees.
 	// These trees are specified by their genre.
 	enum BSTMediaType { ComedyDVD, DramaDVD, ClassicDVD };
-	vector<BinarySearchTree<Media>*> inventory;
+	vector<BinarySearchTree<DVD>*> inventory;
 
 	// return int 'type' returns the enum for the correct tree.
 	DVD* createDVD(istream& inFile, int& type);

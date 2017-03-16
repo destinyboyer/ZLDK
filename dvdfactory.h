@@ -27,87 +27,53 @@ using namespace std;
 
 class DVDFactory {
 
-public:
+	public:
 
-	/*------------------------------------------------------------------------------------------------
-	Method takes in a file stream and a vector of BinarySearchTree pointers. The method creates
-	DVD objects based on the type of DVD read from the file stream and then inserts the object
-	into a BinarySearchTree that corresponds with that DVD type.
-	PRECONDITIONS:
-	- data must be formatted for DVD objects
-	POSTCONDITIONS:
-	- populates distinct sets based on the type of DVD's created
-	NOTES:	DVD objects are solely responsible for knowing how to handle data
-	in order to populate data members.
-	------------------------------------------------------------------------------------------------*/
+		/*------------------------------------------------------------------------------------------------
+		Method takes in a file stream and a vector of BinarySearchTree pointers. The method creates
+		DVD objects based on the type of DVD read from the file stream and then inserts the object
+		into a BinarySearchTree that corresponds with that DVD type.
+		PRECONDITIONS:
+		- data must be formatted for DVD objects
+		POSTCONDITIONS:
+		- populates distinct sets based on the type of DVD's created
+		NOTES:	DVD objects are solely responsible for knowing how to handle data
+		in order to populate data members.
+		------------------------------------------------------------------------------------------------*/
 
-	void buildTransactions(ifstream& inFile, vector<BinarySearchTree<DVD>*> inventory);
+	void buildInventory(istream& inFile, vector<BinarySearchTree<DVD>*> inventory) {
+		DVD* temp = nullptr;
+		char type;
+		bool successfulRead;                            // read good data
+		bool success;                                   // successfully insert
+		int BST = -1;
+		while (true) {
+			inFile >> type;
 
+			if (type == 'C') {
+				temp = new Classic();
+				successfulRead = temp->setData(inFile);
+				BST = 2;
+			} else if (type == 'D') {
+				temp = new Drama();
+				successfulRead = temp->setData(inFile);
+				BST = 1;
+			} else if (type == 'F') {
+				temp = new Comedy();
+				successfulRead = temp->setData(inFile);
+				BST = 0;
+			}
+			if (successfulRead) {
+				success = inventory[BST]->insert(temp);
+			} else {
+				delete temp;
+			}
+			if (!success) {
+				break;
+			}
+		}
+	}
 };
 
+
 #endif // !dvdfactory_h
-
-void DVDFactory::buildTransactions(ifstream& inFile, vector<BinarySearchTree<DVD>*> inventory) {
-	DVD* temp;
-	char type;
-	bool successfulRead;                            // read good data
-	bool success;                                   // successfully insert
-	for (;;) {
-		inFile >> type;
-
-		if (type == 'C') {
-			temp = new Classic();
-			successfulRead = temp->setData(inFile);
-
-			if (inFile.eof()) {
-				delete temp;
-				break;
-			}
-
-			if (successfulRead) {
-				success = inventory[2]->insert(temp);
-			}
-			else {
-				delete temp;
-			}
-			if (!success) break;
-
-		}
-		else if (type == 'D') {
-			temp = new Drama();
-			successfulRead = temp->setData(inFile);
-
-			if (inFile.eof()) {
-				delete temp;
-				break;
-			}
-
-			if (successfulRead) {
-				success = inventory[1]->insert(temp);
-			}
-			else {
-				delete temp;
-			}
-			if (!success) break;
-
-		}
-		else if (type == 'F') {
-			temp = new Comedy();
-			successfulRead = temp->setData(inFile);
-
-			if (inFile.eof()) {
-				delete temp;
-				break;
-			}
-
-			if (successfulRead) {
-				success = inventory[0]->insert(temp);
-			}
-			else {
-				delete temp;
-			}
-			if (!success) break;
-		}
-
-	}
-}
