@@ -1,12 +1,10 @@
 /*-------------------------------------------------------------------------------------------------
 	
 	Authors:		Boyer, Destiny
-					Bushey, Luke
-					King, Garret
 					Selin, Zach
 
 	Created:		2/21/2017
-	Modified:		3/1/2017
+	Modified:		3/15/2017
 
 	This is a factory class to create transaction objects at runtime based on the type of
 	transaction. Different transaction types have different responsibilities in performing
@@ -21,6 +19,7 @@
 #include <iostream>
 #include <queue>
 #include "transaction.h"
+#include "inventoryTransaction.h"
 
 class TransactionFactory {
 
@@ -33,7 +32,39 @@ class TransactionFactory {
 
 		------------------------------------------------------------------------------------------------*/
 
-		static Transaction* createTransaction(ifstream& inFile, queue<Transaction>);		//creates new Transaction objects
+		static void buildTransactions(istream& inFile, queue<Transaction>*);		//creates new Transaction objects
 };
 
 #endif
+
+void TransactionFactory::buildTransactions(istream& inFile, queue<Transaction>* process) {
+	char temp = ' ';
+	bool successfulRead = false;
+	bool success = false;
+	Transaction* ptr;
+
+	inFile >> temp;
+
+	while (true) {
+		if (temp == 'B' || temp == 'R') {
+
+			ptr = new InventoryTransaction();
+
+		} else if (temp == 'H') {
+			ptr = new Transaction();
+		}
+
+		successfulRead = ptr->setData(inFile, temp);
+
+		if (inFile.eof()) {
+			delete ptr;
+			break;
+		}
+
+		if (successfulRead) {
+			process->push(*ptr);
+		} else {
+			delete ptr;
+		}
+	}
+}
